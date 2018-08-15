@@ -5,6 +5,12 @@
     </form>
   {% endif %}
 
+  {% if nav_location != 'genre' %}
+    <form action="/history/genre" method='get'>
+      <input type="submit" value="View My Genre">
+    </form>
+  {% endif %}
+
   {% if nav_location != 'songs' %}
     <form action="/history/songs" method='get'>
       <input type="submit" value="View My Songs">
@@ -32,6 +38,12 @@
   {% if nav_location != 'add_album' %}
     <form action="/history/albums/add" method='get'>
       <input type="submit" value="Add Album">
+    </form>
+  {% endif %}
+
+  {% if nav_location != 'add_genre' %}
+    <form action="/history/genre/add" method='get'>
+      <input type="submit" value="Add Genre">
     </form>
   {% endif %}
 

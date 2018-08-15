@@ -1,3 +1,9 @@
+{% extends "history/index.html" %}
+
+{% block main_stuff %}
+
+{% include "history/nav_bar.html" with nav_location=location %}
+
 <h1>This is an Artist and some Songs They Recorded</h1>
 
 <h2>{{artist.name}}</h2>
@@ -13,3 +19,4 @@
     </li>
   {% endfor %}
 </ul>
+{% endblock main_stuff %}

@@ -10,9 +10,17 @@ class Artist(models.Model):
     return self.name
 
 # Note that wrapping the model reference to Album_Songs in strings makes them evaluate lazily (after the models have been defined), to avoid 'not defined' errors
+
+class Genre(models.Model):
+  name = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
 class Album(models.Model):
   title = models.CharField(max_length=100)
   year_released = models.CharField(max_length=4)
+  genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.title
@@ -30,8 +38,3 @@ class Song(models.Model):
 
   def __str__(self):
     return self.title
-
-
-# class Album_Songs(models.Model):
-#   album = models.ForeignKey(Album, on_delete=models.CASCADE, )
-#   song = models.ForeignKey(Song, on_delete=models.CASCADE, )

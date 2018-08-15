@@ -1,0 +1,19 @@
+{% extends "history/index.html" %}
+
+{% block main_stuff %}
+
+{% include "history/nav_bar.html" with nav_location=location %}
+
+<h1>This is a Genre
+  <h1>
+
+    <h2>{{genre.name}}</h2>
+
+    <ul>
+      {% for genre in genre.name_set.all %}
+      <li>
+        {{genre.name}}
+      </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

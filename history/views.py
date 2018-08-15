@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView, FormView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from history.models import Artist, Song, Album
-from history.forms import ArtistForm, SongForm, AlbumForm
+from history.models import Artist, Song, Album, Genre
+from history.forms import ArtistForm, SongForm, AlbumForm, GenreForm
 
 class IndexView(TemplateView):
   template_name = 'history/index.html'
@@ -144,4 +144,50 @@ class AlbumEditView(UpdateView):
     context = super().get_context_data(**kwargs)
     context["location"] = "album_edit"
     context["title_action"] = "Edit an album from"
+    return context
+
+
+# ===============================
+# Genre Views
+
+class GenreListView(ListView):
+  model = Genre
+  # Django defaults to referencing the data in the template as 'object_list'. Here is how we can rename it what we want
+  context_object_name = 'genre_list'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "genre"
+    return context
+
+
+class GenreFormView(FormView):
+  template_name = 'history/genre_form.html'
+  form_class = GenreForm
+  # NOTE! Be sure to put the slash in front of the url to route properly
+  success_url = '/history/genre/'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "genre_form"
+    return context
+
+  def form_valid(self, form):
+    # This method is called when valid form data has been POSTed.
+    # It should return an HttpResponse.
+    form.save()
+    return super(GenreFormView, self).form_valid(form)
+
+class GenreDetailView(DetailView):
+  model = Genre
+
+class GenreEditView(UpdateView):
+  model = Genre
+  form_class = GenreForm
+  template_name = 'history/genre_form.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context["location"] = "genre_edit"
+    context["title_action"] = "Edit an genre from"
     return context

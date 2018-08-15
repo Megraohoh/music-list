@@ -15,6 +15,7 @@
       {% for song in album.song_set.all %}
       <li>
         {{song.title}}
+        {{album.genre}}
       </li>
       {% endfor %}
     </ul>

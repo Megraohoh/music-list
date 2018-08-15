@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'history/main.css' %}" />
 
 <h1>Welcome to My Music Collection</h1>
-
+<!-- block is a reserved word, main_stuff is like a variable; controls components according to view -->
 {% block main_stuff %}
   {% comment %} Including nav_bar in each template so we can pass the location to it each time {% endcomment %}
   {% include "history/nav_bar.html" with nav_location=view.location %}

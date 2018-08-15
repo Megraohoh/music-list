@@ -2,11 +2,14 @@ import unittest
 from django.test import TestCase
 from django.urls import reverse
 from .models import Artist
+from .models import Album
+from .models import Song
 
 
 class ArtistTest(TestCase):
 
     def test_list_artists(self):
+
         new_artist = Artist.objects.create(
             name="Suzy Saxophone",
             birth_date="12/25/58",
@@ -44,3 +47,32 @@ class ArtistTest(TestCase):
 
       # Getting 302 back because we have a success url and the view is redirecting under the covers?
       self.assertEqual(response.status_code, 302)
+
+
+
+class SongTest(TestCase):
+
+    def setUp(self):
+        #   Artist and album required to make song test run; call self as needed
+        self.new_artist = Artist.objects.create(
+            name = "Suzy Saxophone",
+            birth_date = "12/25/58",
+            biggest_hit = "Honk Honk Squeak"
+        ),
+
+        self.new_album = Album.objects.create(
+            title = "Album Title",
+            year_released = "1972"
+        ),
+
+        self.new_song = Song.objects.create(
+            title = "new song",
+            albums = self.new_album,
+            artist = self.new_artist
+        )
+
+        response = self.client.get(reverse('history:songs'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['song_list']), 1)
+        self.assertIn(new_song.name.encode(), response.content)

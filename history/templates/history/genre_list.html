@@ -4,12 +4,12 @@
 
 {% include "history/nav_bar.html" with nav_location=location %}
 
-<h1>These Are Made Up Albums</h1>
+<h1>These Are Made Up Genres</h1>
 
 <ul>
-  {% for album in album_list %}
+  {% for genre in genre_list %}
   <li>
-    <a href="{% url 'history:album_detail' album.id %}">{{album.title}}</a>
+    <a href="{% url 'history:genre_detail' genre.id %}">{{genre.name}}</a>
   </li>
   {% endfor %}
 </ul>
