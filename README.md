@@ -10,14 +10,20 @@ Tasks to complete exercise:
 1. Add functionality for genres
 
 ### How to run:
+
+#### Step 1
 ```
 mkdir music-list
 cd music-list
 ```
+
+#### Step 2
 1. Make a virtual env
 1. activate your virtual env
 1. clone this repo
 1. cd into the repo
+
+#### Step 3
 ```
 pip install -r requirements.txt
 python manage.py migrate
