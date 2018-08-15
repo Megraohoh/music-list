@@ -11,18 +11,20 @@ Tasks to complete exercise:
 
 ### How to run:
 ```
-1. `mkdir music-list`
-1. `cd music-list`
+mkdir music-list
+cd music-list
+```
 1. Make a virtual env
 1. activate your virtual env
 1. clone this repo
 1. cd into the repo
-1. `pip install -r requirements.txt`
-1. `python manage.py migrate`
-1. `python manage.py runserver`
+```
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
 ```
 
-This will show in your browser at:
+### This will show in your browser at:
 `http://127.0.0.1:8000/history/`
 
 ### Contributors:
